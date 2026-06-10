@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Approval System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <main class="container">
+        <section class="card hero">
+            <div>
+                <p class="eyebrow">Loan approval prediction powered by Flask, scikit-learn, and a persisted pipeline.</p>
+                <h1>Loan Approval Prediction</h1>
+                <p>Enter applicant details and submit the form for an instant recommendation. The model is trained from your dataset and stored with pickle so prediction is fast on every request.</p>
+            </div>
+        </section>
+
+        <section class="card messages">
+            <div class="message-box">
+                {% if not dataset_found %}
+                    <div class="message error">
+                        <strong>Dataset not found.</strong>
+                        <p>Place <code>loan_approval_dataset.csv</code> in the same folder as <code>app.py</code> and refresh this page.</p>
+                    </div>
+                {% endif %}
+
+                {% if load_error and dataset_found %}
+                    <div class="message error">
+                        <strong>Unable to prepare the model.</strong>
+                        <p>{{ load_error }}</p>
+                    </div>
+                {% endif %}
+
+                {% if model_accuracy %}
+                    <div class="message success">
+                        <strong>Model is ready.</strong>
+                        <p>Validation accuracy: {{ model_accuracy }}%</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="card form-grid">
+            <form id="loan-form">
+                <div class="field">
+                    <label for="no_of_dependents">No. of Dependents</label>
+                    <input id="no_of_dependents" name="no_of_dependents" type="number" min="0" step="1" value="2" required />
+                </div>
+                <div class="field">
+                    <label for="income_annum">Income (Yearly)</label>
+                    <input id="income_annum" name="income_annum" type="number" min="0" step="1000" value="6000000" required />
+                </div>
+                <div class="field">
+                    <label for="loan_amount">Loan Amount</label>
+                    <input id="loan_amount" name="loan_amount" type="number" min="0" step="1000" value="1500000" required />
+                </div>
+                <div class="field">
+                    <label for="loan_term">Loan Term (Years)</label>
+                    <input id="loan_term" name="loan_term" type="number" min="1" step="1" value="7" required />
+                </div>
+                <div class="field">
+                    <label for="cibil_score">CIBIL Score</label>
+                    <input id="cibil_score" name="cibil_score" type="number" min="0" max="900" step="1" value="720" required />
+                </div>
+                <div class="field">
+                    <label for="self_employed">Self Employed</label>
+                    <select id="self_employed" name="self_employed" required>
+                        <option value="No" selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="commercial_assets_value">Commercial Assets Value</label>
+                    <input id="commercial_assets_value" name="commercial_assets_value" type="number" min="0" step="1000" value="3000000" required />
+                </div>
+                <div class="field">
+                    <label for="luxury_assets_value">Luxury Assets Value</label>
+                    <input id="luxury_assets_value" name="luxury_assets_value" type="number" min="0" step="1000" value="5000000" required />
+                </div>
+                <div class="field">
+                    <label for="bank_asset_value">Bank Asset Value</label>
+                    <input id="bank_asset_value" name="bank_asset_value" type="number" min="0" step="1000" value="4500000" required />
+                </div>
+                <button id="predict-button" type="submit">Predict Loan Status</button>
+            </form>
+
+            <div id="message-box" class="message-box"></div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

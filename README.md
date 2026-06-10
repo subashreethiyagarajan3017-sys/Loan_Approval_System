@@ -1,49 +1,23 @@
-Loan Approval Prediction System
-Overview
+# Loan Approval Website
 
-This project predicts whether a loan application will be Approved or Rejected using a Random Forest Classifier. The model is trained on a loan approval dataset containing applicant financial details and credit information.
+This repository converts the notebook into a full Flask web app with a frontend built using HTML, CSS, and JavaScript.
 
-Features
-Data preprocessing using Pandas
-Label Encoding for categorical variables
-Train-Test Split for model evaluation
-Random Forest Classification
-Feature Importance Visualization
-Loan Approval Prediction for new applicants
-Dataset Attributes
+## Setup
 
-The model uses the following features:
+1. Place `loan_approval_dataset.csv` in the same folder as `app.py`.
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the website:
+   ```bash
+   python app.py
+   ```
+4. Open `http://127.0.0.1:5000` in your browser.
 
-Number of Dependents
-Annual Income
-Loan Amount
-Loan Term
-CIBIL Score
-Self Employed Status
-Commercial Assets Value
-Luxury Assets Value
-Bank Asset Value
+## Behavior
 
-Target Variable:
-
-Loan Status (Approved / Rejected)
-Technologies Used
-Python
-Pandas
-NumPy
-Scikit-learn
-Matplotlib
-Installation
-
-Install the required libraries:
-
-pip install pandas numpy scikit-learn matplotlib
-Project Workflow
-Load the dataset.
-Preprocess the data.
-Encode categorical variables.
-Split data into training and testing sets.
-Train the Random Forest model.
-Evaluate model accuracy.
-Visualize feature importance.
-Predict loan approval status for new applicants.
+- The app reads your dataset, trains a scikit-learn pipeline, and saves it with `pickle` as `loan_model.pkl`.
+- The frontend uses AJAX to send prediction requests without reloading the page.
+- If the dataset is missing or invalid, the page displays a helpful error message.
+- Use the form to input loan applicant values and receive an approval prediction.

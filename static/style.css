@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f4f7fb;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --success: #ecfdf5;
+    --success-text: #065f46;
+    --error: #fef2f2;
+    --error-text: #991b1b;
+    --border: #d1d5db;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+    color: var(--text);
+}
+
+.container {
+    width: min(100%, 940px);
+    margin: 48px auto;
+    padding: 32px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 28px;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.hero {
+    display: grid;
+    gap: 24px;
+    padding: 40px 40px 32px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: -0.03em;
+}
+
+.hero p {
+    margin: 16px 0 0;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 46rem;
+}
+
+.messages {
+    display: grid;
+    gap: 16px;
+    padding: 0 40px 32px;
+}
+
+.message {
+    border-radius: 18px;
+    padding: 20px 24px;
+    line-height: 1.6;
+}
+
+.message strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.success {
+    background: var(--success);
+    color: var(--success-text);
+}
+
+.error {
+    background: var(--error);
+    color: var(--error-text);
+}
+
+.form-grid {
+    display: grid;
+    gap: 18px;
+    padding: 0 40px 40px;
+}
+
+.field {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--text);
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+button {
+    width: fit-content;
+    margin-top: 8px;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+    .container {
+        margin: 20px auto;
+        padding: 0 16px;
+    }
+
+    .hero,
+    .messages,
+    .form-grid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.note {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.result-card {
+    background: #eef2ff;
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-top: 0;
+}
+
+.result-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+}
+
+.result-card p {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.message-box {
+    display: grid;
+    gap: 16px;
+}
+
+button.loading {
+    cursor: progress;
+    opacity: 0.85;
+}
+
+button.loading::after {
+    content: "";
+    display: inline-block;
+    margin-left: 12px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-top-color: #fff;
+    border-radius: 999px;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
